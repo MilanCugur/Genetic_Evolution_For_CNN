@@ -1,0 +1,75 @@
+% Simpozijum Matematika i primene
+% Requires Latex2e!
+\documentclass[lat]{simposium}
+
+
+\volume{,Vol. X}  %%%%%% UPISUJE UREDNIK
+\issue{(1)}        %%%%%% UPISUJE UREDNIK
+\pubyear{2019}     %%%%%% UPISUJE UREDNIK
+\firstpage{1}      %%%%%% UPISUJE UREDNIK
+\lastpage{12}      %%%%%% UPISUJE UREDNIK
+
+%%%%%% NA OVOM MESTU UKLJUCUJETE PAKETE
+%%%%%% Na primer: \usepackage{gclc}
+
+%%%%%% NA OVOM MESTU DEFINISETE LATEX KOMANDE
+%%%%%% Na primer: \newcommand{\const}{\mathop{\mathrm{const}}}
+
+\begin{document}
+\begin{frontmatter}
+
+\title{Hibridni genetski algoritam za treniranje konvolutivnih neuronskih mreza}
+
+\author{\textbf{\fnms{Milan M.} \snm{Čugurović}}}
+\address{Matematički fakultet, Univerzitet u Beogradu, Studentski trg 16, 11000 Beograd\\
+\email{milan\_cugurovic@matf.bg.ac.rs}
+}
+\author{\textbf{\fnms{Nikola} \snm{Dimitrijević}}}
+\address{Majkrosoft razvojni centar Srbija, Španskih boraca 3, 11070 Beograd\\
+\email{nikoladimi95@gmail.com}
+}
+\author{\textbf{\fnms{Stefan} \snm{Mišković}}}
+\address{Matematički fakultet, Univerzitet u Beogradu, Studentski trg 16, 11000 Beograd\\
+\email{stefan@matf.bg.ac.rs}
+}
+
+\received{\smonth{Jul} \syear{2013}}   %%%%%% UPISUJE UREDNIK
+\revised{\smonth{Jul} \syear{2013}}    %%%%%% UPISUJE UREDNIK
+\accepted{\smonth{Jul} \syear{2013}}   %%%%%% UPISUJE UREDNIK
+
+\maketitle
+
+\begin{abstract}
+
+Ovaj rad prezentuje modifikovanu varijantu genetskog algoritma neuroevolucije konvolutivih arhitektura 
+nastalu uključivanjem tehnika optimizacije, konkretno uključivanjem tehnike lokalne pretrage u evolucioni mehanizam 
+algoritma. Izmena se zasniva na modifikovanju evolutivnog dela algoritma fokusiranjem na broj slojeva mreže. 
+Prethodnim se evolucija teži učini efikasnijom, sa fokusom na smanjenje broja potrebnih generacija do dostizanja dovoljno kvalitetne jednike. 
+
+Dodatni doprinos ovog rada predstavlja kreiranje novog skupa podataka \textit{DoubledMNIST}, koji predstavlja naslednika popularnog 
+skupa podataka \textit{MNIST}. Kreirani skup podataka dupliran je u odnosu na \textit{MNIST} skup podataka kako u smislu samog broja instanci i tako i u smislu rezolucije 
+svake pojedniačne instance. Rezultati prikazani u radu dobijeni su primenom prezentovog metoda poboljšanja na kreiranom 
+skupu podataka. Rad takođe definiše rezultate klasifikacije na pomenutom skupu. 
+
+\end{abstract}
+\begin{keyword}
+genetic algorithm; local search; convolutional arhitectures; MNIST dataset
+\end{keyword}
+\end{frontmatter}
+
+\begin{thebibliography}{99}
+\bibitem{1}   
+\textbf{Cohen, G., Afshar, S., Tapson, J., van Schaik, A.} EMNIST: an extension of MNIST to handwritten letters. \emph{arXiv preprint arXiv:1702.05373.}, 2017.
+
+\bibitem{2} 
+\textbf{Floreano, D., Dürr, P., Mattiussi, C.} Neuroevolution: from architectures to learning. \emph{Evolutionary intelligence}, 1(1), 47-62, 2008.
+
+\bibitem{3} 
+\textbf{Voß, S., Martello, S., Osman, I. H., Roucairol, C. (Eds.).} Meta-heuristics: Advances and trends in local search paradigms for optimization. \emph{Springer Science and Business Media.}, 2012.
+
+\end{thebibliography}
+
+
+
+
+\end{document}
