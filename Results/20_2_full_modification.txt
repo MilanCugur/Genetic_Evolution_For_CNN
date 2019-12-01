@@ -1,0 +1,398 @@
+			Starting generation 1...
+Creating models from individuals...
+Creating and evaluating indiv #0
+Epoch 1/5
+60000/60000 [==============================] - 25s 409us/step - loss: 0.3626 - acc: 0.8795
+Epoch 2/5
+60000/60000 [==============================] - 23s 384us/step - loss: 0.0662 - acc: 0.9811
+Epoch 3/5
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0481 - acc: 0.9858
+Epoch 4/5
+60000/60000 [==============================] - 23s 383us/step - loss: 0.0334 - acc: 0.9900
+Epoch 5/5
+60000/60000 [==============================] - 23s 383us/step - loss: 0.0314 - acc: 0.9910
+10000/10000 [==============================] - 2s 236us/step
+Creating and evaluating indiv #1
+Epoch 1/5
+60000/60000 [==============================] - 27s 451us/step - loss: 0.3425 - acc: 0.8873
+Epoch 2/5
+60000/60000 [==============================] - 26s 427us/step - loss: 0.0595 - acc: 0.9817
+Epoch 3/5
+60000/60000 [==============================] - 26s 428us/step - loss: 0.0389 - acc: 0.9884
+Epoch 4/5
+60000/60000 [==============================] - 26s 426us/step - loss: 0.0332 - acc: 0.9900
+Epoch 5/5
+60000/60000 [==============================] - 26s 427us/step - loss: 0.0261 - acc: 0.9919
+10000/10000 [==============================] - 3s 252us/step
+this gen fitnesses: [0.991  0.9921]
+			Starting generation 2...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/5
+60000/60000 [==============================] - 24s 408us/step - loss: 0.3743 - acc: 0.8771
+Epoch 2/5
+60000/60000 [==============================] - 23s 387us/step - loss: 0.0667 - acc: 0.9798
+Epoch 3/5
+60000/60000 [==============================] - 23s 386us/step - loss: 0.0418 - acc: 0.9876
+Epoch 4/5
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0334 - acc: 0.9897
+Epoch 5/5
+60000/60000 [==============================] - 23s 387us/step - loss: 0.0284 - acc: 0.9916
+10000/10000 [==============================] - 2s 236us/step
+Creating and evaluating indiv #1
+Epoch 1/5
+60000/60000 [==============================] - 25s 418us/step - loss: 0.4037 - acc: 0.8683
+Epoch 2/5
+60000/60000 [==============================] - 24s 393us/step - loss: 0.0634 - acc: 0.9812
+Epoch 3/5
+60000/60000 [==============================] - 23s 391us/step - loss: 0.0469 - acc: 0.9854
+Epoch 4/5
+60000/60000 [==============================] - 24s 393us/step - loss: 0.0355 - acc: 0.9892
+Epoch 5/5
+60000/60000 [==============================] - 24s 392us/step - loss: 0.0310 - acc: 0.9908
+10000/10000 [==============================] - 2s 235us/step
+this gen fitnesses: [0.9896 0.9893]
+			Starting generation 3...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/4
+60000/60000 [==============================] - 24s 402us/step - loss: 0.2654 - acc: 0.9180
+Epoch 2/4
+60000/60000 [==============================] - 23s 386us/step - loss: 0.0554 - acc: 0.9838
+Epoch 3/4
+60000/60000 [==============================] - 23s 386us/step - loss: 0.0420 - acc: 0.9874
+Epoch 4/4
+60000/60000 [==============================] - 23s 386us/step - loss: 0.0320 - acc: 0.9907
+10000/10000 [==============================] - 2s 236us/step
+Creating and evaluating indiv #1
+			\Skipping training because model is the same as last gen
+this gen fitnesses: [0.9913 0.9893]
+			Starting generation 4...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/4
+60000/60000 [==============================] - 26s 441us/step - loss: 0.2869 - acc: 0.9105
+Epoch 2/4
+60000/60000 [==============================] - 25s 420us/step - loss: 0.0522 - acc: 0.9840
+Epoch 3/4
+60000/60000 [==============================] - 25s 420us/step - loss: 0.0405 - acc: 0.9876
+Epoch 4/4
+60000/60000 [==============================] - 25s 420us/step - loss: 0.0306 - acc: 0.9912
+10000/10000 [==============================] - 2s 248us/step
+Creating and evaluating indiv #1
+Epoch 1/3
+60000/60000 [==============================] - 26s 440us/step - loss: 0.2172 - acc: 0.9337
+Epoch 2/3
+60000/60000 [==============================] - 25s 423us/step - loss: 0.0410 - acc: 0.9881
+Epoch 3/3
+60000/60000 [==============================] - 25s 423us/step - loss: 0.0338 - acc: 0.9900
+10000/10000 [==============================] - 3s 251us/step
+this gen fitnesses: [0.9882 0.9865]
+			Starting generation 5...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/4
+60000/60000 [==============================] - 27s 442us/step - loss: 0.2547 - acc: 0.9156
+Epoch 2/4
+60000/60000 [==============================] - 25s 423us/step - loss: 0.0478 - acc: 0.9858
+Epoch 3/4
+60000/60000 [==============================] - 25s 422us/step - loss: 0.0374 - acc: 0.9883
+Epoch 4/4
+60000/60000 [==============================] - 25s 422us/step - loss: 0.0298 - acc: 0.9907
+10000/10000 [==============================] - 2s 249us/step
+Creating and evaluating indiv #1
+Epoch 1/5
+60000/60000 [==============================] - 24s 406us/step - loss: 0.3412 - acc: 0.8876
+Epoch 2/5
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0587 - acc: 0.9819
+Epoch 3/5
+60000/60000 [==============================] - 23s 387us/step - loss: 0.0393 - acc: 0.9878
+Epoch 4/5
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0314 - acc: 0.9903
+Epoch 5/5
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0263 - acc: 0.9918
+10000/10000 [==============================] - 2s 237us/step
+this gen fitnesses: [0.9895 0.992 ]
+			Starting generation 6...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/3
+60000/60000 [==============================] - 26s 427us/step - loss: 0.1586 - acc: 0.9528
+Epoch 2/3
+60000/60000 [==============================] - 24s 407us/step - loss: 0.0327 - acc: 0.9901
+Epoch 3/3
+60000/60000 [==============================] - 24s 408us/step - loss: 0.0284 - acc: 0.9916
+10000/10000 [==============================] - 2s 243us/step
+Creating and evaluating indiv #1
+			\Skipping training because model is the same as last gen
+this gen fitnesses: [0.987 0.992]
+			Starting generation 7...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+			\Skipping training because model is the same as last gen
+Creating and evaluating indiv #1
+			\Skipping training because model is the same as last gen
+this gen fitnesses: [0.987 0.992]
+			Starting generation 8...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+			\Skipping training because model is the same as last gen
+Creating and evaluating indiv #1
+			\Skipping training because model is the same as last gen
+this gen fitnesses: [0.987 0.992]
+			Starting generation 9...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/3
+60000/60000 [==============================] - 26s 441us/step - loss: 0.1657 - acc: 0.9504
+Epoch 2/3
+60000/60000 [==============================] - 25s 422us/step - loss: 0.0319 - acc: 0.9905
+Epoch 3/3
+60000/60000 [==============================] - 25s 423us/step - loss: 0.0274 - acc: 0.9917
+10000/10000 [==============================] - 2s 250us/step
+Creating and evaluating indiv #1
+Epoch 1/5
+60000/60000 [==============================] - 24s 406us/step - loss: 0.3311 - acc: 0.8926
+Epoch 2/5
+60000/60000 [==============================] - 23s 387us/step - loss: 0.0612 - acc: 0.9817
+Epoch 3/5
+60000/60000 [==============================] - 23s 384us/step - loss: 0.0410 - acc: 0.9876
+Epoch 4/5
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0298 - acc: 0.9908
+Epoch 5/5
+60000/60000 [==============================] - 23s 386us/step - loss: 0.0268 - acc: 0.9912
+10000/10000 [==============================] - 2s 236us/step
+this gen fitnesses: [0.992  0.9902]
+			Starting generation 10...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/4
+60000/60000 [==============================] - 24s 404us/step - loss: 0.2730 - acc: 0.9111
+Epoch 2/4
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0568 - acc: 0.9827
+Epoch 3/4
+60000/60000 [==============================] - 23s 384us/step - loss: 0.0367 - acc: 0.9890
+Epoch 4/4
+60000/60000 [==============================] - 23s 384us/step - loss: 0.0313 - acc: 0.9904
+10000/10000 [==============================] - 2s 239us/step
+Creating and evaluating indiv #1
+Epoch 1/5
+60000/60000 [==============================] - 24s 405us/step - loss: 0.3455 - acc: 0.8870
+Epoch 2/5
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0649 - acc: 0.9808
+Epoch 3/5
+60000/60000 [==============================] - 23s 386us/step - loss: 0.0418 - acc: 0.9873
+Epoch 4/5
+60000/60000 [==============================] - 23s 386us/step - loss: 0.0339 - acc: 0.9901
+Epoch 5/5
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0296 - acc: 0.9910
+10000/10000 [==============================] - 2s 234us/step
+this gen fitnesses: [0.9907 0.9885]
+			Starting generation 11...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/3
+60000/60000 [==============================] - 24s 406us/step - loss: 0.1529 - acc: 0.9527
+Epoch 2/3
+60000/60000 [==============================] - 23s 384us/step - loss: 0.0428 - acc: 0.9872
+Epoch 3/3
+60000/60000 [==============================] - 23s 384us/step - loss: 0.0306 - acc: 0.9911
+10000/10000 [==============================] - 2s 237us/step
+Creating and evaluating indiv #1
+Epoch 1/4
+60000/60000 [==============================] - 24s 405us/step - loss: 0.2384 - acc: 0.9276
+Epoch 2/4
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0504 - acc: 0.9848
+Epoch 3/4
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0368 - acc: 0.9889
+Epoch 4/4
+60000/60000 [==============================] - 23s 384us/step - loss: 0.0293 - acc: 0.9910
+10000/10000 [==============================] - 2s 234us/step
+this gen fitnesses: [0.9923 0.9907]
+			Starting generation 12...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/4
+60000/60000 [==============================] - 24s 399us/step - loss: 0.2713 - acc: 0.9120
+Epoch 2/4
+60000/60000 [==============================] - 23s 382us/step - loss: 0.0546 - acc: 0.9838
+Epoch 3/4
+60000/60000 [==============================] - 23s 383us/step - loss: 0.0447 - acc: 0.9869
+Epoch 4/4
+60000/60000 [==============================] - 23s 383us/step - loss: 0.0351 - acc: 0.9894
+10000/10000 [==============================] - 2s 232us/step
+Creating and evaluating indiv #1
+			\Skipping training because model is the same as last gen
+this gen fitnesses: [0.9858 0.9907]
+			Starting generation 13...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+			\Skipping training because model is the same as last gen
+Creating and evaluating indiv #1
+Epoch 1/4
+60000/60000 [==============================] - 24s 404us/step - loss: 0.2564 - acc: 0.9153
+Epoch 2/4
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0488 - acc: 0.9851
+Epoch 3/4
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0363 - acc: 0.9891
+Epoch 4/4
+60000/60000 [==============================] - 23s 384us/step - loss: 0.0313 - acc: 0.9906
+10000/10000 [==============================] - 2s 237us/step
+this gen fitnesses: [0.9858 0.9927]
+			Starting generation 14...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+			\Skipping training because model is the same as last gen
+Creating and evaluating indiv #1
+			\Skipping training because model is the same as last gen
+this gen fitnesses: [0.9858 0.9927]
+			Starting generation 15...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/5
+60000/60000 [==============================] - 25s 422us/step - loss: 0.4566 - acc: 0.8495
+Epoch 2/5
+60000/60000 [==============================] - 24s 401us/step - loss: 0.0670 - acc: 0.9804
+Epoch 3/5
+60000/60000 [==============================] - 24s 402us/step - loss: 0.0446 - acc: 0.9864
+Epoch 4/5
+60000/60000 [==============================] - 24s 401us/step - loss: 0.0373 - acc: 0.9889
+Epoch 5/5
+60000/60000 [==============================] - 24s 401us/step - loss: 0.0289 - acc: 0.9909
+10000/10000 [==============================] - 2s 237us/step
+Creating and evaluating indiv #1
+Epoch 1/5
+60000/60000 [==============================] - 15s 249us/step - loss: 0.3770 - acc: 0.8751
+Epoch 2/5
+60000/60000 [==============================] - 14s 231us/step - loss: 0.0634 - acc: 0.9811
+Epoch 3/5
+60000/60000 [==============================] - 14s 231us/step - loss: 0.0468 - acc: 0.9860
+Epoch 4/5
+60000/60000 [==============================] - 14s 231us/step - loss: 0.0374 - acc: 0.9885
+Epoch 5/5
+60000/60000 [==============================] - 14s 229us/step - loss: 0.0291 - acc: 0.9910
+10000/10000 [==============================] - 2s 176us/step
+this gen fitnesses: [0.9875 0.9901]
+			Starting generation 16...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/3
+60000/60000 [==============================] - 25s 420us/step - loss: 0.3939 - acc: 0.8618
+Epoch 2/3
+60000/60000 [==============================] - 24s 402us/step - loss: 0.0463 - acc: 0.9864
+Epoch 3/3
+60000/60000 [==============================] - 24s 402us/step - loss: 0.0376 - acc: 0.9888
+10000/10000 [==============================] - 2s 233us/step
+Creating and evaluating indiv #1
+Epoch 1/3
+60000/60000 [==============================] - 15s 246us/step - loss: 0.1553 - acc: 0.9523
+Epoch 2/3
+60000/60000 [==============================] - 14s 230us/step - loss: 0.0398 - acc: 0.9883
+Epoch 3/3
+60000/60000 [==============================] - 14s 231us/step - loss: 0.0294 - acc: 0.9909
+10000/10000 [==============================] - 2s 173us/step
+this gen fitnesses: [0.9916 0.99  ]
+			Starting generation 17...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/5
+60000/60000 [==============================] - 23s 389us/step - loss: 1.0689 - acc: 0.6180
+Epoch 2/5
+60000/60000 [==============================] - 22s 362us/step - loss: 0.1359 - acc: 0.9658
+Epoch 3/5
+60000/60000 [==============================] - 22s 360us/step - loss: 0.0688 - acc: 0.9819
+Epoch 4/5
+60000/60000 [==============================] - 22s 361us/step - loss: 0.0517 - acc: 0.9858
+Epoch 5/5
+60000/60000 [==============================] - 22s 363us/step - loss: 0.0364 - acc: 0.9903
+10000/10000 [==============================] - 2s 217us/step
+Creating and evaluating indiv #1
+			\Skipping training because model is the same as last gen
+this gen fitnesses: [0.989 0.99 ]
+			Starting generation 18...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/3
+60000/60000 [==============================] - 23s 380us/step - loss: 0.5289 - acc: 0.8377
+Epoch 2/3
+60000/60000 [==============================] - 22s 362us/step - loss: 0.0473 - acc: 0.9863
+Epoch 3/3
+60000/60000 [==============================] - 22s 363us/step - loss: 0.0317 - acc: 0.9910
+10000/10000 [==============================] - 2s 225us/step
+Creating and evaluating indiv #1
+Epoch 1/5
+60000/60000 [==============================] - 23s 383us/step - loss: 0.3368 - acc: 0.8898
+Epoch 2/5
+60000/60000 [==============================] - 22s 365us/step - loss: 0.0609 - acc: 0.9822
+Epoch 3/5
+60000/60000 [==============================] - 22s 364us/step - loss: 0.0414 - acc: 0.9876
+Epoch 4/5
+60000/60000 [==============================] - 22s 364us/step - loss: 0.0328 - acc: 0.9903
+Epoch 5/5
+60000/60000 [==============================] - 22s 364us/step - loss: 0.0302 - acc: 0.9907
+10000/10000 [==============================] - 2s 224us/step
+this gen fitnesses: [0.9903 0.9913]
+			Starting generation 19...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/5
+60000/60000 [==============================] - 15s 249us/step - loss: 0.3377 - acc: 0.8890
+Epoch 2/5
+60000/60000 [==============================] - 14s 231us/step - loss: 0.0632 - acc: 0.9812
+Epoch 3/5
+60000/60000 [==============================] - 14s 230us/step - loss: 0.0455 - acc: 0.9863
+Epoch 4/5
+60000/60000 [==============================] - 14s 231us/step - loss: 0.0328 - acc: 0.9899
+Epoch 5/5
+60000/60000 [==============================] - 14s 232us/step - loss: 0.0287 - acc: 0.9912
+10000/10000 [==============================] - 2s 168us/step
+Creating and evaluating indiv #1
+			\Skipping training because model is the same as last gen
+this gen fitnesses: [0.99   0.9913]
+			Starting generation 20...
+Creating models from individuals...
+findIndividualsWithSameRoots...
+Creating and evaluating indiv #0
+Epoch 1/5
+60000/60000 [==============================] - 24s 405us/step - loss: 0.3031 - acc: 0.9001
+Epoch 2/5
+60000/60000 [==============================] - 23s 384us/step - loss: 0.0587 - acc: 0.9815
+Epoch 3/5
+60000/60000 [==============================] - 23s 384us/step - loss: 0.0398 - acc: 0.9878
+Epoch 4/5
+60000/60000 [==============================] - 23s 383us/step - loss: 0.0323 - acc: 0.9899
+Epoch 5/5
+60000/60000 [==============================] - 23s 385us/step - loss: 0.0264 - acc: 0.9921
+10000/10000 [==============================] - 2s 236us/step
+Creating and evaluating indiv #1
+Epoch 1/4
+60000/60000 [==============================] - 23s 381us/step - loss: 0.2482 - acc: 0.9215
+Epoch 2/4
+60000/60000 [==============================] - 22s 364us/step - loss: 0.0558 - acc: 0.9829
+Epoch 3/4
+60000/60000 [==============================] - 22s 363us/step - loss: 0.0354 - acc: 0.9894
+Epoch 4/4
+60000/60000 [==============================] - 22s 364us/step - loss: 0.0304 - acc: 0.9907
+10000/10000 [==============================] - 2s 222us/step
+this gen fitnesses: [0.9877 0.9943]
+The best individual [0 1 0 0 1 0 1 0 1 0 1 0 0 1 0 1 1 1 1] had fitness (accuracy): 0.9943
+CPU times: user 29min 38s, sys: 9min 6s, total: 38min 44s
+Wall time: 46min 55s
