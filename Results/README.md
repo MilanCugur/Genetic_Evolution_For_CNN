@@ -1,6 +1,6 @@
 Results provided by training procedure of GA. <br>
 Results each of train is writen to separate file, with filename: <br>
-[number of generations]_[number of individuals in each of generation]_[full/partial dataset]_[modification/baseline].txt <br>
+[number of generations] _ [number of individuals in each of generation] _ [full/partial dataset] _ [modification/baseline].txt <br>
 <br>
 
 full - use full mnist dataset <br>
