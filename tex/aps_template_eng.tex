@@ -35,7 +35,7 @@
 
 \maketitle
 \begin{abstract}
-    
+
 This paper presents a modified variant of genetic algorithm for training convolutional architectures which reduces the execution time of the algorithm. 
 Modification is based on changing the evolutional segment of the algorithm by focusing on limiting the training time of each individual and incorporating the 
 learnt knowledge of neuron parameters from the last generation into each new generation. By doing so the evolution is made more efficient, thus reducing the time 
@@ -51,19 +51,27 @@ genetic algorithm; local search; convolutional arhitectures; MNIST dataset
 \end{keyword}
 \end{frontmatter}
 
+\section{Algorithm}
+% da li je ok da citiramo sa arxiva
+% \received i slicno
+
+The core idea of the genetic algorithm is to get a good solution to a problem by generating better and better solutions through the process of evolution.
+The evolution process consists of selection, mutation and crossover
+\marginpar{test}
 
 \begin{thebibliography}{99}
-\bibitem{1}   
-\textbf{Cohen, G., Afshar, S., Tapson, J., van Schaik, A.} EMNIST: an extension of MNIST to handwritten letters. \emph{arXiv preprint arXiv:1702.05373.}, 2017.
+\bibitem{gen}   
+\textbf{Xie L and Yuille A.} Genetic CNN. \emph{arXiv preprint arXiv:1703.01513.}, 2017.
 
-\bibitem{2} 
+\bibitem{neuroevo} 
 \textbf{Floreano, D., Dürr, P., Mattiussi, C.} Neuroevolution: from architectures to learning. \emph{Evolutionary intelligence}, 1(1), 47-62, 2008.
 
-\bibitem{3} 
+\bibitem{meta} 
 \textbf{Voß, S., Martello, S., Osman, I. H., Roucairol, C. (Eds.).} Meta-heuristics: Advances and trends in local search paradigms for optimization. \emph{Springer Science and Business Media.}, 2012.
 
+\bibitem{emnist}   
+\textbf{Cohen, G., Afshar, S., Tapson, J., van Schaik, A.} EMNIST: an extension of MNIST to handwritten letters. \emph{arXiv preprint arXiv:1702.05373.}, 2017.
+
 \end{thebibliography}
-
-
 
 \end{document}
