@@ -1326,10 +1326,10 @@
 %**************** INICIALIZATION
 %
 % Define font psyr for copyright:
-\DeclareFixedFont{\copyrf}{U}{psy}{m}{n}{8}
-\DeclareFixedFont{\copyrfa}{U}{psy}{m}{n}{9}
-\def\copyright@sign{{\copyrf\char'323}}
-\def\copyright@signa{{\copyrfa\char'323}}
+%\DeclareFixedFont{\copyrf}{U}{psy}{m}{n}{8}
+%\DeclareFixedFont{\copyrfa}{U}{psy}{m}{n}{9}
+%\def\copyright@sign{{\copyrf\char'323}}
+%\def\copyright@signa{{\copyrfa\char'323}}
 %
 % DIMENSIONS
 \def\@articletypesize{\large}
