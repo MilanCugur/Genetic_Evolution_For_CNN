@@ -19,15 +19,15 @@
 \title{Modified hybrid genetic algorithm for training convolutional neural networks}
 
 \author{\textbf{\fnms{Milan M.} \snm{Čugurović}}}
-\address{University of Belgrade, Faculty of Mathematics, Studentski trg 16, 11000 Belgrade\\
+\address{Faculty of Mathematics, University of Belgrade, Studentski trg 16, 11000 Belgrade\\
 \email{milan\_cugurovic@matf.bg.ac.rs}
 }
 \author{\textbf{\fnms{Nikola} \snm{Dimitrijević}}}
-\address{Microsoft Development Center Serbia, Španskih boraca 3, 11000 Belgraed\\
+\address{Microsoft Development Center Serbia, Španskih boraca 3, 11000 Belgrade\\
 \email{nikoladim95@gmail.com}
 }
 \author{\textbf{\fnms{Stefan} \snm{Mišković}}}
-\address{University of Belgrade, Faculty of Mathematics, Studentski trg 16, 11000 Belgrade\\
+\address{Faculty of Mathematics, University of Belgrade, Studentski trg 16, 11000 Belgrade\\
 \email{stefan@matf.bg.ac.rs}
 }
 
@@ -38,7 +38,7 @@
     
 This paper presents a modified variant of genetic algorithm for training convolutional architectures which reduces the execution time of the algorithm. 
 Modification is based on changing the evolutional segment of the algorithm by focusing on limiting the training time of each individual and incorporating the 
-learnt knowledge of neuron parameters from the last generation into each new generation. By doing so the evolution is made more efficient, thus reducing the time 
+learnt knowledge of neuron parameters from the previous generations into each new one. By doing so the evolution is made more efficient, thus reducing the time 
 needed to find the desired architecture.
 
 Additional contribution of this paper is creating new dataset \textit{DoubledMNIST}, which represents a successor of the popular MNIST dataset.
@@ -47,9 +47,28 @@ Results shown in the paper were obtained using the presented improved method on 
 \end{abstract}
 
 \begin{keyword}
-genetic algorithm; local search; convolutional arhitectures; MNIST dataset
+genetic algorithm; CNN arhitectures; MNIST dataset; DoubledMNIST dataset
 \end{keyword}
 \end{frontmatter}
+
+\section{Introduction}
+
+\section{Related work}
+
+This section provides background about offline handwritten character datasets and about incorporating genetic algorithms 
+with the learning of CNN architectures, and their training. 
+
+\subsection{Offline Handwritting Datasets}
+
+\subsection{Genetic CNN}
+
+\section{DoubledMNIST Dataset}
+
+\section{Method}
+
+\section{Evaluation}
+
+\section{Conclusion}
 
 
 \begin{thebibliography}{99}
@@ -62,6 +81,8 @@ genetic algorithm; local search; convolutional arhitectures; MNIST dataset
 \bibitem{3} 
 \textbf{Voß, S., Martello, S., Osman, I. H., Roucairol, C. (Eds.).} Meta-heuristics: Advances and trends in local search paradigms for optimization. \emph{Springer Science and Business Media.}, 2012.
 
+\bibitem{4}
+\textbf{Xie, L., Yuille, A. } Genetic cnn. \emph{In Proceedings of the IEEE International Conference on Computer Vision (pp. 1379-1388).}, 2017.
 \end{thebibliography}
 
 
