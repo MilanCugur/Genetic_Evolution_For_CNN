@@ -1,0 +1,69 @@
+% Simposium MATHEMATICS and APPLICATIONS
+% Requires Latex2e!
+\documentclass[eng]{simposium}
+\volume{,Vol. X}  %%%%%% TO BE ENTERED BY THE EDITOR(S)
+\issue{(1)}      %%%%%% TO BE ENTERED BY THE EDITOR(S)
+\pubyear{2019}   %%%%%% TO BE ENTERED BY THE EDITOR(S)
+\firstpage{1}    %%%%%% TO BE ENTERED BY THE EDITOR(S)
+\lastpage{12}     %%%%%% TO BE ENTERED BY THE EDITOR(S)
+
+%%%%%% ENTER HERE ADDITIONAL PACKAGES
+%%%%%% For example: \usepackage{gclc}
+
+%%%%%% ENTER HERE YOUR OWN LATEX COMMANDS
+%%%%%% For example: \newcommand{\const}{\mathop{\mathrm{const}}}
+
+\begin{document}
+\begin{frontmatter}
+
+\title{Modified hybrid genetic algorithm for training convolutional neural networks}
+
+\author{\textbf{\fnms{Milan M.} \snm{Čugurović}}}
+\address{University of Belgrade, Faculty of Mathematics, Studentski trg 16, 11000 Belgrade\\
+\email{milan\_cugurovic@matf.bg.ac.rs}
+}
+\author{\textbf{\fnms{Nikola} \snm{Dimitrijević}}}
+\address{Microsoft Development Center Serbia, Španskih boraca 3, 11000 Belgraed\\
+\email{nikoladim95@gmail.com}
+}
+\author{\textbf{\fnms{Stefan} \snm{Mišković}}}
+\address{University of Belgrade, Faculty of Mathematics, Studentski trg 16, 11000 Belgrade\\
+\email{stefan@matf.bg.ac.rs}
+}
+
+\received{\smonth{December} \syear{2019}}   %%%%%% TO BE ENTERED BY THE EDITOR(S)
+
+\maketitle
+\begin{abstract}
+    
+This paper presents a modified variant of genetic algorithm for training convolutional architectures which reduces the execution time of the algorithm. 
+Modification is based on changing the evolutional segment of the algorithm by focusing on limiting the training time of each individual and incorporating the 
+learnt knowledge of neuron parameters from the last generation into each new generation. By doing so the evolution is made more efficient, thus reducing the time 
+needed to find the desired architecture.
+
+Additional contribution of this paper is creating new dataset \textit{DoubledMNIST}, which represents a successor of the popular MNIST dataset.
+Created dataset is doubled with respect to the MNIST dataset both in terms of the number of instances and in terms of the resolution of each individual isntance.
+Results shown in the paper were obtained using the presented improved method on the created dataset. The paper also shows classification results on the said dataset.
+\end{abstract}
+
+\begin{keyword}
+genetic algorithm; local search; convolutional arhitectures; MNIST dataset
+\end{keyword}
+\end{frontmatter}
+
+
+\begin{thebibliography}{99}
+\bibitem{1}   
+\textbf{Cohen, G., Afshar, S., Tapson, J., van Schaik, A.} EMNIST: an extension of MNIST to handwritten letters. \emph{arXiv preprint arXiv:1702.05373.}, 2017.
+
+\bibitem{2} 
+\textbf{Floreano, D., Dürr, P., Mattiussi, C.} Neuroevolution: from architectures to learning. \emph{Evolutionary intelligence}, 1(1), 47-62, 2008.
+
+\bibitem{3} 
+\textbf{Voß, S., Martello, S., Osman, I. H., Roucairol, C. (Eds.).} Meta-heuristics: Advances and trends in local search paradigms for optimization. \emph{Springer Science and Business Media.}, 2012.
+
+\end{thebibliography}
+
+
+
+\end{document}
