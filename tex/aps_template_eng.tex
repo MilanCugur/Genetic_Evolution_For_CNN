@@ -56,6 +56,7 @@ genetic algorithm; CNN arhitectures; MNIST dataset; DoubledMNIST dataset
 \section{Introduction}
 
 \section{Related work}
+\textcolor{red}{da spomenemo izvor ideje?}
 
 This section provides background about offline handwritten character datasets and about incorporating genetic algorithms 
 with the learning of CNN architectures, and their training. 
@@ -66,10 +67,10 @@ with the learning of CNN architectures, and their training.
 
 
 With the rise in number of layers in the CNNs, deeper neural networks are more difficult to train, and using skip connections proved invaluable and allowed 
-for easier training of substantially deeper networks. \cite{5}. Those skip connections enable identity functions to be learned easily where needed.
+for easier training of substantially deeper networks. \cite{6}. Those skip connections enable identity functions to be learned easily where needed.
 Those skip connections can be manually selected, but since the number of possible skip connections grows exponentially, and because evaluating each model can take a long time, 
 in practice its impossible to try each possible architecture.
-Many handcrafted CNN architectures axist, but since manually searching the space of all architectures is impractical, it gives a great incentive for automatic search 
+Many handcrafted CNN architectures exist, but since manually searching the space of all architectures is impractical, it gives a great incentive for automatic search 
 for a good architecture.
 
 A possible solution for finding a good architecutre automatically is by using some kind of metaheuristic. 
@@ -86,13 +87,38 @@ They use convolutional blocks and tensor concatenation as the node functions in 
 \section{Network representation}
 \label{sec:repr}
 
-\textcolor{red}{ovde treba opisati kako je enkodirana mreza kao binarni string}
+Many network architectures, such as \cite{6,7}, can be partitioned into stages.
+In each stage the width, height and depth of the data cube remain unchanged. 
+Adjacent stages are connected with pooling layers which reduce both width and height of the data.
+The polling usually performs $2 x 2$ max polling operation, which halfs the width and height by transforming each $2 x 2$ 
+pixel group into one pixel whose value is the maximum of the pixel group.
+The number of channels (filters) within convolutions of the same stage is the same.
 
+That observation is leveraged to define a set of networks which 
+can be encoded into a binary string of fixed length.
+In this scenario, a CNN is composed of $S$ stages, each containing 
+$K_i$ nodes ($i=1,...,S$). 
+The nodes within a stage are ordered, and connections are only allowed from a lower number towards a higher numbered node.
+Each node represents a convolutional operation. If a node has multiple inputs, then they are all summed up element-wise.
+After convolution the ReLU activation is performed. 
+The fully connected end of the network is not encoded, as its hyperparameters are static.
+
+Since each node can be an input only to higher nubmered nodes, that means that 
+$(K_i -1) + (K_i - 2) + ... + 2 + 1 = \frac{K_i(K_i-1)}{2} $ bits are needed to encode a stage containing $K_i$ nodes.
+
+Some encodings would represent invalid networks, thus default nodes are introduced in each stage.
+They are the first and the last nodes in the stage, and since they're always present, they aren't encoded in the binary string.
+
+There are a few special cases:
+\begin{itemize}
+    \item If a node does not have any input or output, then it is removed.
+    \item If a node does not have an input, then we connect the first node in the stage to it.
+    \item If a node does not have an output, then we connect it to the last node in the stage.
+\end{itemize}
 
 
 \section{Method}
 
-\textcolor{red}{da spomenemo izvor ideje?}
 
 The core idea of the genetic algorithm is to get a good solution to a problem by generating increasingly better solutions through the process of evolution.
 Network architecture is encoded as a binary string of fixed length. That string represents a gene of an individual.
@@ -117,8 +143,8 @@ Mutation randomly changes a gene of an individual, thus introducing more variety
             \textbf{Mutation:} perform mutation on individuals which have not had crossover with probability $p_M$ and mutation parameter $q_M$\;
 
             \textbf{Construction:} construct CNN from the gene encoding it\;
-            \textbf{Inheritance:} inherit the segment weights from the most similar individual of the last generation\;
-            \textbf{Training:} train the constructed networks, where number of epochs depends on number of inherited segments\;
+            \textbf{Inheritance:} inherit the stage weights from the most similar individual of the last generation\;
+            \textbf{Training:} train the constructed networks, where number of epochs depends on number of inherited stages\;
             \textbf{Evaluation:} evaluate all individuals to get their fitness\;
      }
      \textbf{Output:} individuals of the final generation and their classification accuracy.
@@ -143,16 +169,16 @@ The probability of individual $M_{t,n}$ passing the selection is equal to $f_{t,
 \subsection{Crossover phase}
 The crossover process combines the genes of two individuals to create one or two new individuals.
 Here crossover of two individuals always results in two new individuals.
-When two individuals are in a crossover they swap a whole segment.
-That way the learned connections within a segment are kept through the generations, while still introducing more variaty in individuals.
+When two individuals are in a crossover they swap a whole stage.
+That way the learned connections within a stage are kept through the generations, while still introducing more variaty in individuals.
 Candidates for crossover are pairs of individuals $(M_{t,2i-1}, M_{t,2i}), \forall i=1,..,\lfloor N/2\rfloor $.
-The probability of crossover between two individuals is $p_C$, and the probability of two segments being swapped is $q_C$.
+The probability of crossover between two individuals is $p_C$, and the probability of two stages being swapped is $q_C$.
 
 \subsection{Mutation phase}
 Mutation can occur only if an individual didn't go through the crossover process.
 In that case the individual starts going through mutation with probability $p_M$.
 Then each bit in the individuals string representation has a low chance of being inverted, defined in $q_M$.
-Mutation ensures additional variaty in individuals and allows for exploring different architectures within each segment.
+Mutation ensures additional variaty in individuals and allows for exploring different architectures within each stage.
 
 \subsection{Construction phase}
 The binary encoded  string of each individual is parsed and the graph is constructed, where graph nodes represent the convolution operations.
@@ -167,25 +193,30 @@ In the most trivial case, the network in the new generation is identical to the 
 In that situation, the weights of the new individual can be inherited (copied) from the individual of the last generation.
 Though the probability of the trivial case is small, we can extend the idea to other cases.
 
-In case the new individual has the first $n$ out of $m$ (where $n < m$) segments the same as some individual from the last generation, we can still leverage that similarity
-by inheriting the segments from an individual of the last generation that are unchanged in the individual of the new generation.
-In this instance, the network already has learnt the lower level features, and only the last $m-n$ segments need to be trained.
-The first $n$ segments are not frozen so that they can freely adapt to the new architecture. 
+In case the new individual has the first $n$ out of $m$ (where $n < m$) stages the same as some individual from the last generation, we can still leverage that similarity
+by inheriting the stages from an individual of the last generation that are unchanged in the individual of the new generation.
+In this instance, the network already has learnt the lower level features, and only the last $m-n$ stages need to be trained.
+The first $n$ stages are not frozen so that they can freely adapt to the new architecture. 
 
-Since the lower segments are already trained, the network needs less time to converge, thus we can reduce the number of epochs in training the network.
+Individuals which have many identical segments as an individual in previous generation, but do not have the first segment identical to that individual do not inherit any 
+weights. This is motivated by the fact that the latter layers in the network are adapted to outputs of previous layers, and if those outputs of previous layers were to change, 
+the learnt parameters of the latter layers wouldn't be of any use.
+For that reason we only allow inheriting the stages which were unchanged from the first stage.
+
+Since the lower stages are already trained, the network needs less time to converge, thus we can reduce the number of epochs in training the network.
 That observation leads to an implementation that allows us to double the execution time of the algorithm that performs architecture search.
 The results are shown in section \ref{sec:eval}.
 
 \subsection{Training phase}
 Training is performed on a constructed CNN model for a set amount of epochs. 
-The more segments were inherited in inheritance phase, the less number of epochs is needed to train the model.
+The more stages were inherited in inheritance phase, the less number of epochs is needed to train the model.
 Training is done on the training dataset which is the same for all individuals.
 
 \subsection{Evaluation phase}
 Evaluation phase is performed to get the fitness of an individual.
 The trained model is evaluated on a testing dataset to get its classification accuracy, which is used as its fitness.
 
-%todo moraju od pocetka segmenti opisi
+%todo moraju od pocetka segmenti opisi`
 
 \section{Evaluation}
 \label{sec:eval}
@@ -211,8 +242,11 @@ The trained model is evaluated on a testing dataset to get its classification ac
 \bibitem{5}
 \textbf{Suganuma, M., Shirakawa, S., Nagao T. } A genetic programming approach to designing convolutional neural network architectures. \emph{In Proceedings of the Genetic and Evolutionary Computation Conference (pp. 497-504).}, 2017.
 
-\bibitem{5}
+\bibitem{6}
 \textbf{He, K., Zhang, X., Ren S., Sun J.} Deep Residual Learning for Image Recognition. \emph{The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, 2016.
+
+\bibitem{7}
+\textbf{Simonyan K., Zisserman A.} Very Deep Convolutional Networks for Large-Scale Image Recognition. \emph{International Conference on Learning Representations}, 2014.
 
 \end{thebibliography}
 
