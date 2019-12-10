@@ -53,6 +53,29 @@ genetic algorithm; CNN arhitectures; MNIST dataset; DoubledMNIST dataset
 
 \section{Introduction}
 
+Inspirisani modernim trendovima u razvoju dubokih konolutivnih neuronskih arhitektura \cite{28}\cite{29} istrazivaci u 
+oblasti masinkog ucenja vec dugo pokusavaju naci sisteme koji ce automatski generisati pogodne arhitekture dubokih 
+neuronskih mreza, koje bi sa jedne strane imale dovoljne kapacitete (u smislu mogucnosti ucenja odnosno broja parametara) dok 
+bi sa druge strane bile lake za obucavanje i propagaciju gradijenata. Jedan nacin prustupa resavanju ovog problema jesu genetski 
+algoritmi odnosno simulacija evolucije kojom bi se favorizovale arhitekture koje su u stanju da se brzo prilagode, adaptiraju 
+i ispune prethodne uslove. Ovaj pristup dao je jako dobre rezultate \cite{5}\cite{30}\cite{31}. Za neke usko specificne oblasti 
+jako dobri rezultati dobijeni su kombinovanjem ova dva pristupa \cite{32}\cite{33} sto je pokazalo da su one jako kompatibilne. 
+
+Sa druge strane, evolutivni algoritmi, koji se u sustini zasnivaju na simulaciji prirodne evolucije, te stoga zatevaju jako 
+veliki broj generacija i dodatno veliki broj jedinki u svakoj od njih komplementarni su sa arhitekturama dubokog ucenja, konkretno 
+sa dubokim konvolutivnim neuronskim mrezama, s obzirom da one obicno imaju jako puno parametara, zbog cega zahtevaju veliku 
+kolicinu vremena da bi se optimizovale. Stoga je najveca prepreka prilikom integracije ova dva pristupa upravo vreme potrebno 
+za obucavanje svake jedinke genetskog algoritma. U ovom radu pokazali smo da je zaista moguce resiti ovaj problem ukoliko se 
+jedinkama jedne generacije dopusti preuzimanje znanja njihovih roditelja. Ovime smo osvarili ubrzanja do reda velicine dva. pri 
+nekim scenarijima evolucije. Dodatno, pokazali smo da je moguce iskoristiti naucene arhitektute koje su se dobro pokazale na jednom 
+za treniranje i na novim, slicnim skupovima poidataka.
+
+U to ime kreirali smo i novi skup podataka, za koji smatramo da ce postati naslednik sada vec viralnog skupa podataka MINST.
+
+U poglavlju 2 dat je osvrt na prethodni rad u oblasti, poglavlje 3 do detalja opisuje skup pdoataka koji smo kreirali, 
+u poglavlju 4 diskutuje se predlozeni metod poboljsanja, dok su u poglavlju 6 dati konkretni rezultati dobijeni evaluacijom 
+predlozenog pristupa. Poglavlje 6 predstavlja zakljucak, rekapitulira uradjeno i dalje smernice za dalja poboljsanja. 
+
 \textcolor{red}{da spomenemo izvor ideje?}
 
 \textcolor{blue}{Mislis rad genetic cnn?}
@@ -342,10 +365,81 @@ Evaluation phase is performed to get the fitness of an individual.
 The trained model is evaluated on a testing dataset to get its classification accuracy, which is used as its fitness.
 
 %todo moraju od pocetka segmenti opisi`
-
 \section{Evaluation}
 
+In this section we will describe the results we achieved using proposed method. 
+We evaluated our model on the MNIST dataset \cite{8}. In addition, we trained the learned architecture on the 
+created dataset DoubledMNIST, thus defining the first classification results on it. 
+Additionally, all of our source code is publicly available at the web address \textit{github.com/MilanCugur/Genetic\_Evolution\_For\_CNN}. 
+
+The choice of architecture was made on the mnist dataset, given its characteristics. 
+When choosing the architecture, three convolutional stages with $3$, $4$ and $5$ convolutions respectively were used. 
+Previously indicates that architectures are represented by the genome with a length of $19$.
+The number of filters is the same for each convolution in the same stage, and is equal to $32$ $48$ and $64$, respectively, across the stages. 
+
+When evaluating the proposed method, we created several different benchmarks that cover several basics evolution scenarios. 
+In each of them, the proposed method gave a significant improvement. 
+Specific scenarios and results are given with:
+\begin{itemize}
+  \item 4 individuals trained over 4 generations: baseline training time: $32$min $44$sec, proposed method training time: $18$min $01$ sec
+  \item 20 individuals trained over 20 generations: baseline training time: $2$h $33$min $54$sec, proposed method training time: $1$h $06$min $25$ sec
+  \item 2 individuals trained over 20 generations: baseline training time: $25$min $25$sec, proposed method training time: $18$min $18$ sec
+  \item 20 individuals trained over 2 generations: baseline training time: $1$h $22$min $22$sec, proposed method training time: $46$min $55$ sec
+\end{itemize}
+
+In the previous list, the first two points correspond to the scenario when we have an identical 
+(in the first point insufficient but in the second point sufficient) number of generations and individuals in them. 
+In the second point, only one sixth of the MNIST dataset was used because of the computational complexity and limitations of our machine. 
+The third point simulates an evolution scenario when we have enough individuals, however a very short number of generations, 
+while the last point simulates the opposite situation when the number of generations is sufficient, but when we do not have 
+enough individuals in them. 
+It is important to point out that in each of the four preceding scenarios, our re-presented method has yielded a significant 
+improvement measured in time savings, without losing out on the quality of the generated architectures. 
+
+The standard evolution scenario when we have enough ($10$) individuals in each of the $10$ generations of evolution 
+(trained across the entire MNIST dataset) generated the architectures as in Figure \ref{fig:architectures}, 
+while the results of the two best individuals of each generation can be seen in Figure \ref{fig:top2}. 
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=1\textwidth]{arhitekture.png}
+  \caption{Generated architectures using presented method on NIST dataset}
+  \label{fig:architectures}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[]{top1.png}
+  \caption{Top two individuals precision through ten GA trining epochs}
+  \label{fig:top2}
+\end{figure}
+
+The first architecture of Figure \ref{fig:architectures} was trained on a DoubledMNIST dataset with training lasting about 
+$30$min and stopped with an early stop technique after $14$ epochs, with $99.495\%$ precision on the test set. 
+This sets the results of the cassification on the created dataset. 
+
 \section{Conclusion}
+
+U ovom radu pokazali smo da je moguce ubrzanje genetskog algoritma za treniranje dubokih konvolutivnih neuronskih mreza 
+ukoliko jedinke jedne generacije koriste znanje (odnosno parametre) koje su naucili njihovi roditelji. 
+Ukljucivanjem ovakvih roditelj-dete veza omogucili smo veliko smanjenje vremena izvrsavanja samog algoritma s obzirom da 
+najveci deo vremena izvrsavanja genetski algoritmi ovog tipa trose u treninranju samih jedinki svake od generacija. 
+Dodatno, redukovani trening koji izvodimo u slucaju nasledjivanja odredjenog broja prvih slojeva mreze od jednog od roditelja 
+doprinosi robusnosti samog procesa treninga jer se prvi slojevi finalne mreze koji definisu nove atribute nad kojima dublji 
+slojevi u mrezi uce retreniraju kroz nekoliko epoha (koliko prezive). %% da li je prejaka poslednja tvrdnja?
+
+Dodatno, testovi koje smo izveli pokazali su da se nas sistem ponasa izuzetno dobro pri raznim scenarijima evolucije, 
+kada imamo dovoljno i vremena i jedinki, u situacijama kada nam je broj generacija iz nekog razloga ogranicen ali imamo dovoljno 
+veliku populaciju, kao i u situaciji kada imamo dovoljno vremena za evoluciju ali je broj samih jediniki u populaciji ogranicen.
+
+Jos jedan doprinos ovog rada jeste kreiranje novog skupa oflajn rukom pisanih karaktera engleskog alfabeta koji treba da bude 
+naslednik popularnog skupa podataka MINST, s obzirom na svoje dimenzije i karakteristike. Kreirani skup podataka idealan je 
+za zadatke ucenja masinskog ucenja, kada se arhitekture kreirane na MNISTU prilagodjavaju ozbiljnijim zahtevima koje pred 
+algoritme stavlja nas skup podataka. 
+Rezultati koje smo ostvarili trenirajuci arhitekturu dobijenu izvrsavanjem genetskog algoritma na skupu podataka MINST predstavljaju 
+prve takve na skupu podataka DoubledMNIST.
+
+\newpage
 
 \begin{thebibliography}{99}
 \bibitem{1}   
@@ -428,6 +522,24 @@ The trained model is evaluated on a testing dataset to get its classification ac
 
 \bibitem{27}
 \textbf{Xiao, H., Rasul, K., Vollgraf, R.} Fashion-mnist: a novel image dataset for benchmarking machine learning algorithms. \emph{arXiv preprint arXiv:1708.07747.}, 2017.
+
+\bibitem{28}
+\textbf{Szegedy, C., Ioffe, S., Vanhoucke, V., Alemi, A. A.} Inception-v4, inception-resnet and the impact of residual connections on learning. \emph{In Thirty-First AAAI Conference on Artificial Intelligence.}, 2017.
+
+\bibitem{29}
+\textbf{Wu, Z., Shen, C., Van Den Hengel, A.} Wider or deeper: Revisiting the resnet model for visual recognition. \emph{Pattern Recognition, 90, 119-133.}, 2019.
+
+\bibitem{30}
+\textbf{Lu, Z., Whalen, I., Boddeti, V., Dhebar, Y., Deb, K., Goodman, E., Banzhaf, W.} NSGA-NET: a multi-objective genetic algorithm for neural architecture search. \emph{arXiv preprint arXiv:1810.03522.}, 2018.
+
+\bibitem{31}
+\textbf{Suganuma, M., Shirakawa, S., Nagao, T.} A genetic programming approach to designing convolutional neural network architectures. \emph{In Proceedings of the Genetic and Evolutionary Computation Conference (pp. 497-504). ACM.}, 2017.
+
+\bibitem{32}
+\textbf{Oullette, R., Browne, M., Hirasawa, K.} Genetic algorithm optimization of a convolutional neural network for autonomous crack detection. \emph{In Proceedings of the 2004 congress on evolutionary computation (IEEE Cat. No. 04TH8753) (Vol. 1, pp. 516-521). IEEE.}, 2004.
+
+\bibitem{33}
+\textbf{Rikhtegar, A., Pooyan, M., Manzuri-Shalmani, M. T.} Genetic algorithm-optimised structure of convolutional neural network for face recognition applications. \emph{IET Computer Vision, 10(6), 559-566.}, 2016.
 
 \end{thebibliography}
 \end{document}

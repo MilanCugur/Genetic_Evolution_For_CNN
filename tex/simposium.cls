@@ -18,7 +18,8 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{times}
-
+\usepackage{xcolor}
+\usepackage[ruled,noline]{algorithm2e}
 
 \usepackage[T1,OT2]{fontenc}%OT1-latinica, OT2-cirilica
 \renewcommand{\rmdefault}{wncyr}%postavljamo font wncyr kao osnovni
