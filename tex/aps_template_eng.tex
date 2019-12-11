@@ -53,6 +53,21 @@ genetic algorithm; CNN arhitectures; MNIST dataset; DoubledMNIST dataset
 
 \section{Introduction}
 
+Insipired by modern trends in development of deep convolutional neural architectures \cite{28, 29} researches in machine 
+learning space are attempting to find systems that will automatically generate suitable architectures for deep neural networks.
+Those architectures would on one hand have enough capacity (in terms of learning ability or number of parameters), while on 
+the other hand, they would be easy for training and gradient propagation.
+One way to approach solving this problem is to leverage genetic algorithms which simulate evolution which favours architectures 
+that are able to adapt fast and fulfill former requirements.
+This approach yields very good results \cite{5, 30, 31}. 
+For some specific areas very good results are achieved by combining convolutional neural networks with genetic algorithms \cite{32, 33},
+which shows that they are highly compatible. 
+
+However, evolutionary algorithms, which are based on simulating natural selection, and therefore require large number 
+of generations and additionaly large number of individuals in each generation are complementary with deep learning architectures.
+Concretely, with deep convolutional neural networks, given that they have many parameters, which is why they require great 
+amount of time to be omptimized.   
+
 Inspirisani modernim trendovima u razvoju dubokih konolutivnih neuronskih arhitektura \cite{28}\cite{29} istrazivaci u 
 oblasti masinkog ucenja vec dugo pokusavaju naci sisteme koji ce automatski generisati pogodne arhitekture dubokih 
 neuronskih mreza, koje bi sa jedne strane imale dovoljne kapacitete (u smislu mogucnosti ucenja odnosno broja parametara) dok 
@@ -60,52 +75,63 @@ bi sa druge strane bile lake za obucavanje i propagaciju gradijenata. Jedan naci
 algoritmi odnosno simulacija evolucije kojom bi se favorizovale arhitekture koje su u stanju da se brzo prilagode, adaptiraju 
 i ispune prethodne uslove. Ovaj pristup dao je jako dobre rezultate \cite{5}\cite{30}\cite{31}. Za neke usko specificne oblasti 
 jako dobri rezultati dobijeni su kombinovanjem ova dva pristupa \cite{32}\cite{33} sto je pokazalo da su one jako kompatibilne. 
+Therefore, the biggest obstacle in integrating these two approaches is the time required
+to train each individual within the genetic algorithm. In this paper we have shown that it is indeed possible to solve this problem if
+single-generation units are able to \textit{inherit} their ancestors' knowledge.
+In doing so, we have achieved speedup by a factor of two in multiple evolution scenarios.
+In addition, we have shown that it is possible to reuse learned architects that have shown themselves to be good at one task
+and apply them to new, similar datasets.
+
+We have also created a new dataset for this purpose, which we believe will become the successor to the now-viral MNIST dataset.
+
+Chapter 2 gives an overview of previous related work in the field, Chapter 3 details the dataset we created,
+Chapter 4 discusses the proposed improvement method, while Chapter 6 gives specific results obtained by evaluation of the proposed approach.
+Chapter 7 concludes, recapitulates what has been done and presents further guidance for future improvements.
 
 Sa druge strane, evolutivni algoritmi, koji se u sustini zasnivaju na simulaciji prirodne evolucije, te stoga zatevaju jako 
 veliki broj generacija i dodatno veliki broj jedinki u svakoj od njih komplementarni su sa arhitekturama dubokog ucenja, konkretno 
 sa dubokim konvolutivnim neuronskim mrezama, s obzirom da one obicno imaju jako puno parametara, zbog cega zahtevaju veliku 
 kolicinu vremena da bi se optimizovale. Stoga je najveca prepreka prilikom integracije ova dva pristupa upravo vreme potrebno 
 za obucavanje svake jedinke genetskog algoritma. U ovom radu pokazali smo da je zaista moguce resiti ovaj problem ukoliko se 
-jedinkama jedne generacije dopusti preuzimanje znanja njihovih roditelja. Ovime smo osvarili ubrzanja do reda velicine dva. pri 
-nekim scenarijima evolucije. Dodatno, pokazali smo da je moguce iskoristiti naucene arhitektute koje su se dobro pokazale na jednom 
+jedinkama jedne generacije dopusti preuzimanje znanja njihovih roditelja. Ovime smo osvarili ubrzanja do reda velicine dva.\textcolor{red}{pri 
+nekim scenarijima evolucije.}  Dodatno, pokazali smo da je moguce iskoristiti naucene arhitektute koje su se dobro pokazale na jednom 
 za treniranje i na novim, slicnim skupovima poidataka.
 
-U to ime kreirali smo i novi skup podataka, za koji smatramo da ce postati naslednik sada vec viralnog skupa podataka MINST.
+U to ime kreirali smo i novi skup podataka, za koji smatramo da ce postati naslednik sada vec viralnog skupa podataka MNIST.
 
 U poglavlju 2 dat je osvrt na prethodni rad u oblasti, poglavlje 3 do detalja opisuje skup pdoataka koji smo kreirali, 
 u poglavlju 4 diskutuje se predlozeni metod poboljsanja, dok su u poglavlju 6 dati konkretni rezultati dobijeni evaluacijom 
 predlozenog pristupa. Poglavlje 6 predstavlja zakljucak, rekapitulira uradjeno i dalje smernice za dalja poboljsanja. 
 
-\textcolor{red}{da spomenemo izvor ideje?}
-
-\textcolor{blue}{Mislis rad genetic cnn?}
-
 \section{Related work}
 
-This section provides background about offline handwritten character datasets and about incorporating genetic algorithms 
+This section provides background regarding offline handwritten character datasets and incorporating genetic algorithms 
 with the learning of CNN architectures, and their training. 
 
-\subsection{Offline Handwritting Datasets}
+\subsection{Offline handwritting datasets}
 
 The existence of quality datasets of handwritten characters is a prerequisite for the development of quality handwriting 
 recognition techniques and their evaluations in different research scenarios. 
-The task of collecting this kind of data is very demanding and arduous, since in order to create a dataset that includes 
+The task of collecting this kind of data is very demanding and laborious, since in order to create a dataset that includes 
 a variety of writing styles, a large number of respondents must be involved. 
 The process of creating handwritten databases began in the 1990s\cite{9} and is still ongoing. 
 In the meantime, a large number of datasets have been developed. 
 
-Some of the most important and commonly used datasets of offline handwritten characters are: CVL database \cite{18}, RIMES database \cite{10}, IAM dataset \cite{11}, 
+Some of the most important and commonly used datasets of offline handwritten characters are: CVL database \cite{18}, RIMES database \cite{10},
+IAM dataset \cite{11}, 
 NIST \cite{12}\cite{13}, MNIST \cite{8} and EMNIST \cite{1} datasets, CEDAR \cite{14}, UNIPEN \cite{15}, IBM UB \cite{16} and so on. 
-Although the most commonly used datasets are datasets of handwritten Latin/English alphabet 
-there are significant datasets from other alphabets. 
-Here we refer to datasets of handwritten Chinese \cite{19}\cite{20}\cite{21}, Arabic \cite{22}\cite{23}, as well as Bangala \cite{24}\cite{25} datasets, while there are many others. 
-In addition, the development of multilingual datasets has been intensively developing in the last few years \cite{17}\cite{26}\cite{18}, which seeks to create an alphabet independent handwriting recognition system. 
+Although the most commonly used datasets are datasets of handwritten Latin/English alphabet, 
+there are significant datasets from other alphabets too. 
+Here we refer to datasets of handwritten Chinese \cite{19, 20, 21}, Arabic \cite{22, 23}, as well as Bangala \cite{24, 25} datasets,
+while there are many others. 
+In addition, the development of multilingual datasets has been intensively developing in the last few years \cite{17, 26, 18},
+which seeks to create an alphabet-agnostic handwriting recognition system. 
 A more detailed overview of handwritten character datasets can be found in \cite{9}, 
 while the datasets of the NIST family will be described in more detail below, since the dataset we created was built on the same basis. 
 
 \subsubsection{NIST dataset}
 
-NIST Special Database 19 \cite{12}\cite{13} was developed by the American National Institute of Standards and Technology as CD-ROM in 1995, and then was 
+NIST Special Database 19 \cite{12, 13} was first published by the American National Institute of Standards and Technology as CD-ROM in 1995, and then was 
 re-released in 2016 using modern file formats. 
 This offline database of handwritten digits and numerals contains $815255$ segmented characters, each labeled 
 with one of $62$ classes ($10$ digits, $26$ lowercase and $26$ uppercase English alphabet characters). 
@@ -114,7 +140,7 @@ Each of individual images were obtained from one of the $3669$ completed forms (
 where the segmentation of each of the images was checked manually. 
 The database contains characters from $3596$ authors. 
 The database is provided through several hierarchies and it is suitable for the tasks of author identification, handwriting recognition, etc. 
-The authors also proposes internal division of data for training and testing 
+The authors also propose internal division of data for training and testing 
 (recommended data for testing comes from high school students' handwriting). 
 
 \begin{figure}[!ht]
@@ -126,13 +152,14 @@ The authors also proposes internal division of data for training and testing
 
 \subsubsection{MNIST dataset}
 
-The MNIST dataset of offline handwritten digits, developed by Le Cun et all. in 1998 \cite{8}, has become on of the most famous and the most important dataset in machine learning, 
+The MNIST dataset of offline handwritten digits, developed by Le Cun et all. in 1998 \cite{8},
+has become one of the most famous and the most important datasets in machine learning, 
 classification and computer vision tasks. 
 MNIST was the first famous dataset derived from the larger NIST Special Database 19. 
 The dataset contains $60,000$ images in the training set and $10,000$ images in the test set, labeled with one out of ten possible digits. 
 The images are in grayscale, measuring $28$ times $28$ pixels. 
 The images of the MNIST training and test set were created uniformly from the NIST training and test set, 
-by selecting $50\%$ of the images from each, while maintaining the identical distribution of the MNIST training and test part. 
+by selecting $50\%$ of the images from each, while maintaining the identical distribution of the MNIST training and test sets. 
 Over the years, this dataset has been widely used both in a large number of digit recognition systems and as a core dataset 
 when introducing basic machine learning and pattern recognition concepts. 
 
@@ -144,24 +171,24 @@ It consists of several sub-datasets: EMNIST By\_Class and EMNIST By\_Merge Datas
 EMNIST Letters Dataset and EMNIST MNIST Dataset. 
 The images in each of them are monochromatic and are in resolution $28$ times $28$ pixels, 
 while depending on the dataset, the labels to which they are marked differ. 
-The EMNIST By\_Class and By\_Merge datasets both contains all NIST images, but differ in number of labels and images distribution 
-in each of the label. By\_Class dataset contain images labeled with $62$ classes (NIST like), while in By\_Merge dataset 
+The EMNIST By\_Class and By\_Merge datasets both contains all NIST images, but differ in number of labels and image distributions 
+in each label. By\_Class dataset contain images labeled with $62$ classes (NIST like), while in By\_Merge dataset 
 the upper and lower case examples for the classes C I J K L M O P S U V W X Y Z have been merged. 
-EMNIST Balanced dataset contains of $131,600$ images labeled with one of the $47$ classes. 
-This dataset is created intend to avoid misclassification errors caused by lower-upper versions of the same character. 
+EMNIST Balanced dataset consists of $131,600$ images labeled with one of the $47$ classes. 
+This dataset is created with intent to avoid misclassification errors caused by lower-upper versions of the same character. 
 EMNIST Letters dataset consists of images labeled with one of the $26$ English alphabet classes 
 (uppercase and lowecase letters are merged like some classes in prevous sub-dataset). 
-EMNIST MNIST dataset contains of $280,000$ MINST like images, labeled with $10$ digits classes. 
+EMNIST MNIST dataset consists of $280,000$ MNIST-like images, labeled with $10$ digit classes. 
 
 The same conversion process was used when creating each of the sub-datasets. 
 The authors simulated the conversion process that was used in creating the MNIST dataset, in order 
 to share the same structure. 
-The process of converting NIST images involves sequentially adding Gaussian noise (which the standard deviation parameter set to 1), 
-extracting regions around a character, character centering, resizing, and resampling to obtain an image with the appropriate MINST-like dimensions. 
+The process of converting NIST images involves sequentially adding Gaussian noise (with the standard deviation parameter set to 1), 
+extracting regions around a character, character centering, resizing, and resampling to obtain an image with the appropriate MNIST-like dimensions. 
 
 The impact of the MNIST dataset is also evident in the fact that there are datasets in other areas (such as computer vision) that
 follows the same structure and are named like this viral dataset \cite{27}. 
-In this paper we introduce MINST like dataset, but doubled in number of samples and in resolution each of them. 
+In this paper we introduce MNIST like dataset, but doubled in number of samples and in resolution. 
 The created dataset, which we called \textit{Doubled MNIST}, is fully described in Section 3. 
 
 \subsection{Genetic CNN}
@@ -264,11 +291,11 @@ pixel group into one pixel whose value is the maximum of the pixel group.
 The number of channels (filters) within convolutions of the same stage is the same.
 
 That observation is leveraged to define a set of networks which 
-can be encoded into a binary string of fixed length.
+can be encoded into a binary string of fixed length \cite{4}.
 In this scenario, a CNN is composed of $S$ stages, each containing 
 $K_i$ nodes ($i=1,...,S$). 
 The nodes within a stage are ordered, and connections are only allowed from a lower number towards a higher numbered node.
-Each node represents a convolutional operation. If a node has multiple inputs, then they are all summed up element-wise.
+Each node represents a convolutional operation. If a node has multiple inputs, then they are all summed up element-wise \cite{4}.
 After convolution the ReLU activation is performed. 
 The fully connected end of the network is not encoded, as its hyperparameters are static.
 
@@ -322,7 +349,7 @@ Mutation randomly changes a gene of an individual, thus introducing more variety
 We denote the $n$-th individual in generation $t$ as $M_{t,n}$ and fitness of that individual as $f_{t,i}$.
 
 \subsection{Initialization phase}
-The initial generation of individuals is generated by assigning each bit in the binary string a random value from Bernoulli distribution $\mathcal{B}(0.5)$.
+The initial generation of individuals is generated by assigning each bit in the binary string a random value from Bernoulli distribution $\mathcal{B}(0.5)$ \cite{4}.
 Then all individuals from the initial generation are fully trained on the training dataset and evaluated on a testing dataset to get their fitness.
 After that, the genetic evolution process is repeated for a set number of generations.
 
@@ -339,13 +366,13 @@ The crossover process combines the genes of two individuals to create one or two
 Here crossover of two individuals always results in two new individuals.
 When two individuals are in a crossover they swap a whole stage.
 That way the learned connections within a stage are kept through the generations, while still introducing more variaty in individuals.
-Candidates for crossover are pairs of individuals $(M_{t,2i-1}, M_{t,2i}), \forall i=1,..,\lfloor N/2\rfloor $.
+Candidates for crossover are pairs of individuals $(M_{t,2i-1}, M_{t,2i}), \forall i=1,..,\lfloor N/2\rfloor $ \cite{4}.
 The probability of crossover between two individuals is $p_C$, and the probability of two stages being swapped is $q_C$.
 
 \subsection{Mutation phase}
 Mutation can occur only if an individual didn't go through the crossover process.
 In that case the individual starts going through mutation with probability $p_M$.
-Then each bit in the individuals string representation has a low chance of being inverted, defined in $q_M$.
+Then each bit in the individuals string representation has a low chance of being inverted, defined in $q_M$ \cite{4}.
 Mutation ensures additional variaty in individuals and allows for exploring different architectures within each stage.
 
 \subsection{Construction phase}
@@ -364,7 +391,6 @@ Training is done on the training dataset which is the same for all individuals.
 Evaluation phase is performed to get the fitness of an individual.
 The trained model is evaluated on a testing dataset to get its classification accuracy, which is used as its fitness.
 
-%todo moraju od pocetka segmenti opisi`
 \section{Evaluation}
 
 In this section we will describe the results we achieved using proposed method. 
@@ -372,12 +398,12 @@ We evaluated our model on the MNIST dataset \cite{8}. In addition, we trained th
 created dataset DoubledMNIST, thus defining the first classification results on it. 
 Additionally, all of our source code is publicly available at the web address \textit{github.com/MilanCugur/Genetic\_Evolution\_For\_CNN}. 
 
-The choice of architecture was made on the mnist dataset, given its characteristics. 
-When choosing the architecture, three convolutional stages with $3$, $4$ and $5$ convolutions respectively were used. 
-Previously indicates that architectures are represented by the genome with a length of $19$.
-The number of filters is the same for each convolution in the same stage, and is equal to $32$ $48$ and $64$, respectively, across the stages. 
+The choice of architecture was made on the MNIST dataset, given its characteristics. 
+When choosing the architecture, three convolutional stages with $3$, $4$ and $5$ convolutions were used respectively. 
+Previously mentioned architectures are represented by the genome with a length of $19$.
+The number of filters is the same for each convolution within the same stage, and is equal to $32$, $48$ and $64$ respectively across the stages. 
 
-When evaluating the proposed method, we created several different benchmarks that cover several basics evolution scenarios. 
+When evaluating the proposed method, we created several different benchmarks that cover several basic evolution scenarios. 
 In each of them, the proposed method gave a significant improvement. 
 Specific scenarios and results are given with:
 \begin{itemize}
@@ -389,8 +415,8 @@ Specific scenarios and results are given with:
 
 In the previous list, the first two points correspond to the scenario when we have an identical 
 (in the first point insufficient but in the second point sufficient) number of generations and individuals in them. 
-In the second point, only one sixth of the MNIST dataset was used because of the computational complexity and limitations of our machine. 
-The third point simulates an evolution scenario when we have enough individuals, however a very short number of generations, 
+In the second point, only one sixth of the MNIST dataset was used because of the computational complexity and limitations of our hardware. 
+The third point simulates an evolution scenario when we have enough individuals, however a very modest number of generations, 
 while the last point simulates the opposite situation when the number of generations is sufficient, but when we do not have 
 enough individuals in them. 
 It is important to point out that in each of the four preceding scenarios, our re-presented method has yielded a significant 
@@ -410,7 +436,7 @@ while the results of the two best individuals of each generation can be seen in 
 \begin{figure}[!ht]
   \centering
   \includegraphics[]{top1.png}
-  \caption{Top two individuals precision through ten GA trining epochs}
+  \caption{Top two individuals' precision through 10 genetic algorithm training epochs}
   \label{fig:top2}
 \end{figure}
 
@@ -419,6 +445,27 @@ $30$min and stopped with an early stop technique after $14$ epochs, with $99.495
 This sets the results of the cassification on the created dataset. 
 
 \section{Conclusion}
+
+
+In this paper we showed that it is possible to accelerate the genetic algorithm for training deep convolutional neural networks
+if individuals of one generation use the knowledge (or parameters) learned by their ancestors.
+By including such parent-child connections, we have made it possible to greatly reduce the execution time of the algorithm itself, given that
+most of the execution time in genetic algorithms of this type is spent in training the individuals of each generation.
+Additionally, the reduced training we perform in the case of inheriting a certain number of first layers of the network from one parent
+contributes to the robustness of the training process itself as the first layers of the final network (which define the new attributes
+which will be fed into the deeper layers of the network) are retrained through multiple epochs (however many they survive).
+
+In addition, the tests we performed showed that our system behaves extremely well under various evolutional scenarios:
+when we have enough time and individuals, in situations where the number of generations is limited for some reason but we have
+a population which is large enough,
+as well as in the situation when we have enough time for evolution but the number of individuals in the population is limited.
+
+Another contribution of this paper is the creation of a new set of offline handwritten English alphabet characters that should be
+heir to the popular MNIST dataset, given its dimensions and characteristics. The created dataset is ideal
+for teaching or learning ML, e.g. when architectures created on MNIST are adapted to the more serious requirements called for 
+by our new dataset.
+The results we achieved by training the architecture obtained by executing the genetic algorithm on the MNIST dataset are
+the first ones on the DoubledMNIST dataset.
 
 U ovom radu pokazali smo da je moguce ubrzanje genetskog algoritma za treniranje dubokih konvolutivnih neuronskih mreza 
 ukoliko jedinke jedne generacije koriste znanje (odnosno parametre) koje su naucili njihovi roditelji. 
@@ -433,10 +480,10 @@ kada imamo dovoljno i vremena i jedinki, u situacijama kada nam je broj generaci
 veliku populaciju, kao i u situaciji kada imamo dovoljno vremena za evoluciju ali je broj samih jediniki u populaciji ogranicen.
 
 Jos jedan doprinos ovog rada jeste kreiranje novog skupa oflajn rukom pisanih karaktera engleskog alfabeta koji treba da bude 
-naslednik popularnog skupa podataka MINST, s obzirom na svoje dimenzije i karakteristike. Kreirani skup podataka idealan je 
+naslednik popularnog skupa podataka MNIST, s obzirom na svoje dimenzije i karakteristike. Kreirani skup podataka idealan je 
 za zadatke ucenja masinskog ucenja, kada se arhitekture kreirane na MNISTU prilagodjavaju ozbiljnijim zahtevima koje pred 
 algoritme stavlja nas skup podataka. 
-Rezultati koje smo ostvarili trenirajuci arhitekturu dobijenu izvrsavanjem genetskog algoritma na skupu podataka MINST predstavljaju 
+Rezultati koje smo ostvarili trenirajuci arhitekturu dobijenu izvrsavanjem genetskog algoritma na skupu podataka MNIST predstavljaju 
 prve takve na skupu podataka DoubledMNIST.
 
 \newpage
