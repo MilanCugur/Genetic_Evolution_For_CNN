@@ -259,21 +259,22 @@ instead of $1$ as much as they used in the mentioned paper (since such a filter 
 Many network architectures, such as \cite{6,7}, can be partitioned into stages.
 In each stage the width, height and depth of the data cube remain unchanged. 
 Adjacent stages are connected with pooling layers which reduce both width and height of the data.
-The polling usually performs $2 x 2$ max polling operation, which halfs the width and height by transforming each $2 x 2$ 
+The polling usually performs $2 \times 2$ max polling operation, which halfs the width and height by transforming each $2 \times 2$ 
 pixel group into one pixel whose value is the maximum of the pixel group.
 The number of channels (filters) within convolutions of the same stage is the same.
 
 That observation is leveraged to define a set of networks which 
-can be encoded into a binary string of fixed length.
-In this scenario, a CNN is composed of $S$ stages, each containing 
+can be encoded into a binary string of fixed length. 
+Couse of that, in our work we used the binary string network representation which was proposed in \cite{4}. 
+In our scenario, a CNN is composed of $S$ stages, each containing 
 $K_i$ nodes ($i=1,...,S$). 
 The nodes within a stage are ordered, and connections are only allowed from a lower number towards a higher numbered node.
 Each node represents a convolutional operation. If a node has multiple inputs, then they are all summed up element-wise.
 After convolution the ReLU activation is performed. 
-The fully connected end of the network is not encoded, as its hyperparameters are static.
+The fully connected end of the network is not encoded, as its hyperparameters are static. 
 
 Since each node can be an input only to higher nubmered nodes, that means that 
-$(K_i -1) + (K_i - 2) + ... + 2 + 1 = \frac{K_i(K_i-1)}{2} $ bits are needed to encode a stage containing $K_i$ nodes.
+$(K_i -1) + (K_i - 2) + ... + 2 + 1 = \frac{K_i(K_i-1)}{2}$ bits are needed to encode a stage containing $K_i$ nodes.
 
 Some encodings would represent invalid networks, thus default nodes are introduced in each stage.
 They are the first and the last nodes in the stage, and since they're always present, they aren't encoded in the binary string.
@@ -284,6 +285,9 @@ There are a few special cases:
     \item If a node does not have an input, then we connect the first node in the stage to it.
     \item If a node does not have an output, then we connect it to the last node in the stage.
 \end{itemize}
+
+We have adapted our genetic algorithm so that the chromosome is represented by a binary string representing 
+the architecture of the convolutional part of the neural network, which we defined as described above. 
 
 \section{Method}
 
