@@ -53,14 +53,14 @@ genetic algorithm; CNN arhitectures; MNIST dataset; DoubledMNIST dataset
 
 \section{Introduction}
 
-Insipired by modern trends in development of deep convolutional neural architectures \cite{28, 29} researches in machine 
+Insipired by modern trends in development of deep convolutional neural architectures \cite{28}\cite{29} researches in machine 
 learning space are attempting to find systems that will automatically generate suitable architectures for deep neural networks.
 Those architectures would on one hand have enough capacity (in terms of learning ability or number of parameters), while on 
 the other hand, they would be easy for training and gradient propagation.
 One way to approach solving this problem is to leverage genetic algorithms which simulate evolution which favours architectures 
 that are able to adapt fast and fulfill former requirements.
-This approach yields very good results \cite{5, 30, 31}. 
-For some specific areas very good results are achieved by combining convolutional neural networks with genetic algorithms \cite{32, 33},
+This approach yields very good results \cite{5}\cite{30}\cite{31}. 
+For some specific areas very good results are achieved by combining convolutional neural networks with genetic algorithms \cite{32}\cite{33},
 which shows that they are highly compatible. 
 
 However, evolutionary algorithms, which are based on simulating natural selection, and therefore require large number 
@@ -68,47 +68,18 @@ of generations and additionaly large number of individuals in each generation ar
 Concretely, with deep convolutional neural networks, given that they have many parameters, which is why they require great 
 amount of time to be omptimized.   
 
-Inspirisani modernim trendovima u razvoju dubokih konolutivnih neuronskih arhitektura \cite{28}\cite{29} istrazivaci u 
-oblasti masinkog ucenja vec dugo pokusavaju naci sisteme koji ce automatski generisati pogodne arhitekture dubokih 
-neuronskih mreza, koje bi sa jedne strane imale dovoljne kapacitete (u smislu mogucnosti ucenja odnosno broja parametara) dok 
-bi sa druge strane bile lake za obucavanje i propagaciju gradijenata. Jedan nacin prustupa resavanju ovog problema jesu genetski 
-algoritmi odnosno simulacija evolucije kojom bi se favorizovale arhitekture koje su u stanju da se brzo prilagode, adaptiraju 
-i ispune prethodne uslove. Ovaj pristup dao je jako dobre rezultate \cite{5}\cite{30}\cite{31}. Za neke usko specificne oblasti 
-jako dobri rezultati dobijeni su kombinovanjem ova dva pristupa \cite{32}\cite{33} sto je pokazalo da su one jako kompatibilne. 
-Therefore, the biggest obstacle in integrating these two approaches is the time required
-to train each individual within the genetic algorithm. In this paper we have shown that it is indeed possible to solve this problem if
-single-generation units are able to \textit{inherit} their ancestors' knowledge.
-In doing so, we have achieved speedup by a factor of two in multiple evolution scenarios.
-In addition, we have shown that it is possible to reuse learned architects that have shown themselves to be good at one task
-and apply them to new, similar datasets.
-
 We have also created a new dataset for this purpose, which we believe will become the successor to the now-viral MNIST dataset.
 
 Chapter 2 gives an overview of previous related work in the field, Chapter 3 details the dataset we created,
 Chapter 4 discusses the proposed improvement method, while Chapter 6 gives specific results obtained by evaluation of the proposed approach.
 Chapter 7 concludes, recapitulates what has been done and presents further guidance for future improvements.
 
-Sa druge strane, evolutivni algoritmi, koji se u sustini zasnivaju na simulaciji prirodne evolucije, te stoga zatevaju jako 
-veliki broj generacija i dodatno veliki broj jedinki u svakoj od njih komplementarni su sa arhitekturama dubokog ucenja, konkretno 
-sa dubokim konvolutivnim neuronskim mrezama, s obzirom da one obicno imaju jako puno parametara, zbog cega zahtevaju veliku 
-kolicinu vremena da bi se optimizovale. Stoga je najveca prepreka prilikom integracije ova dva pristupa upravo vreme potrebno 
-za obucavanje svake jedinke genetskog algoritma. U ovom radu pokazali smo da je zaista moguce resiti ovaj problem ukoliko se 
-jedinkama jedne generacije dopusti preuzimanje znanja njihovih roditelja. Ovime smo osvarili ubrzanja do reda velicine dva.\textcolor{red}{pri 
-nekim scenarijima evolucije.}  Dodatno, pokazali smo da je moguce iskoristiti naucene arhitektute koje su se dobro pokazale na jednom 
-za treniranje i na novim, slicnim skupovima poidataka.
-
-U to ime kreirali smo i novi skup podataka, za koji smatramo da ce postati naslednik sada vec viralnog skupa podataka MNIST.
-
-U poglavlju 2 dat je osvrt na prethodni rad u oblasti, poglavlje 3 do detalja opisuje skup pdoataka koji smo kreirali, 
-u poglavlju 4 diskutuje se predlozeni metod poboljsanja, dok su u poglavlju 6 dati konkretni rezultati dobijeni evaluacijom 
-predlozenog pristupa. Poglavlje 6 predstavlja zakljucak, rekapitulira uradjeno i dalje smernice za dalja poboljsanja. 
-
 \section{Related work}
 
 This section provides background regarding offline handwritten character datasets and incorporating genetic algorithms 
 with the learning of CNN architectures, and their training. 
 
-\subsection{Offline handwritting datasets}
+\subsection{Offline handwriting datasets}
 
 The existence of quality datasets of handwritten characters is a prerequisite for the development of quality handwriting 
 recognition techniques and their evaluations in different research scenarios. 
@@ -122,16 +93,16 @@ IAM dataset \cite{11},
 NIST \cite{12}\cite{13}, MNIST \cite{8} and EMNIST \cite{1} datasets, CEDAR \cite{14}, UNIPEN \cite{15}, IBM UB \cite{16} and so on. 
 Although the most commonly used datasets are datasets of handwritten Latin/English alphabet, 
 there are significant datasets from other alphabets too. 
-Here we refer to datasets of handwritten Chinese \cite{19, 20, 21}, Arabic \cite{22, 23}, as well as Bangala \cite{24, 25} datasets,
+Here we refer to datasets of handwritten Chinese \cite{19}\cite{20}\cite{21}, Arabic \cite{22}\cite{23}, as well as Bangala \cite{24}\cite{25} datasets,
 while there are many others. 
-In addition, the development of multilingual datasets has been intensively developing in the last few years \cite{17, 26, 18},
+In addition, the development of multilingual datasets has been intensively developing in the last few years \cite{17}\cite{26}\cite{18},
 which seeks to create an alphabet-agnostic handwriting recognition system. 
 A more detailed overview of handwritten character datasets can be found in \cite{9}, 
 while the datasets of the NIST family will be described in more detail below, since the dataset we created was built on the same basis. 
 
 \subsubsection{NIST dataset}
 
-NIST Special Database 19 \cite{12, 13} was first published by the American National Institute of Standards and Technology as CD-ROM in 1995, and then was 
+NIST Special Database 19 \cite{12}\cite{13} was first published by the American National Institute of Standards and Technology as CD-ROM in 1995, and then was 
 re-released in 2016 using modern file formats. 
 This offline database of handwritten digits and numerals contains $815255$ segmented characters, each labeled 
 with one of $62$ classes ($10$ digits, $26$ lowercase and $26$ uppercase English alphabet characters). 
@@ -283,24 +254,25 @@ instead of $1$ as much as they used in the mentioned paper (since such a filter 
 \section{Network representation}
 \label{sec:repr}
 
-Many network architectures, such as \cite{6,7}, can be partitioned into stages.
+Many network architectures, such as \cite{6}\cite{7}, can be partitioned into stages.
 In each stage the width, height and depth of the data cube remain unchanged. 
 Adjacent stages are connected with pooling layers which reduce both width and height of the data.
-The polling usually performs $2 x 2$ max polling operation, which halfs the width and height by transforming each $2 x 2$ 
+The polling usually performs $2 \times 2$ max polling operation, which halfs the width and height by transforming each $2 \times 2$ 
 pixel group into one pixel whose value is the maximum of the pixel group.
 The number of channels (filters) within convolutions of the same stage is the same.
 
 That observation is leveraged to define a set of networks which 
-can be encoded into a binary string of fixed length \cite{4}.
-In this scenario, a CNN is composed of $S$ stages, each containing 
+can be encoded into a binary string of fixed length. 
+Because of that, in our work we used the binary string network representation which was proposed in \cite{4}. 
+In our scenario, a CNN is composed of $S$ stages, each containing 
 $K_i$ nodes ($i=1,...,S$). 
 The nodes within a stage are ordered, and connections are only allowed from a lower number towards a higher numbered node.
 Each node represents a convolutional operation. If a node has multiple inputs, then they are all summed up element-wise \cite{4}.
 After convolution the ReLU activation is performed. 
-The fully connected end of the network is not encoded, as its hyperparameters are static.
+The fully connected end of the network is not encoded, as its hyperparameters are static. 
 
 Since each node can be an input only to higher nubmered nodes, that means that 
-$(K_i -1) + (K_i - 2) + ... + 2 + 1 = \frac{K_i(K_i-1)}{2} $ bits are needed to encode a stage containing $K_i$ nodes.
+$(K_i -1) + (K_i - 2) + ... + 2 + 1 = \frac{K_i(K_i-1)}{2}$ bits are needed to encode a stage containing $K_i$ nodes.
 
 Some encodings would represent invalid networks, thus default nodes are introduced in each stage.
 They are the first and the last nodes in the stage, and since they're always present, they aren't encoded in the binary string.
@@ -311,6 +283,9 @@ There are a few special cases:
     \item If a node does not have an input, then we connect the first node in the stage to it.
     \item If a node does not have an output, then we connect it to the last node in the stage.
 \end{itemize}
+
+We have adapted our genetic algorithm so that the chromosome is represented by a binary string representing 
+the architecture of the convolutional part of the neural network, which we defined as described above. 
 
 \section{Method}
 
@@ -446,7 +421,6 @@ This sets the results of the cassification on the created dataset.
 
 \section{Conclusion}
 
-
 In this paper we showed that it is possible to accelerate the genetic algorithm for training deep convolutional neural networks
 if individuals of one generation use the knowledge (or parameters) learned by their ancestors.
 By including such parent-child connections, we have made it possible to greatly reduce the execution time of the algorithm itself, given that
@@ -466,25 +440,6 @@ for teaching or learning ML, e.g. when architectures created on MNIST are adapte
 by our new dataset.
 The results we achieved by training the architecture obtained by executing the genetic algorithm on the MNIST dataset are
 the first ones on the DoubledMNIST dataset.
-
-U ovom radu pokazali smo da je moguce ubrzanje genetskog algoritma za treniranje dubokih konvolutivnih neuronskih mreza 
-ukoliko jedinke jedne generacije koriste znanje (odnosno parametre) koje su naucili njihovi roditelji. 
-Ukljucivanjem ovakvih roditelj-dete veza omogucili smo veliko smanjenje vremena izvrsavanja samog algoritma s obzirom da 
-najveci deo vremena izvrsavanja genetski algoritmi ovog tipa trose u treninranju samih jedinki svake od generacija. 
-Dodatno, redukovani trening koji izvodimo u slucaju nasledjivanja odredjenog broja prvih slojeva mreze od jednog od roditelja 
-doprinosi robusnosti samog procesa treninga jer se prvi slojevi finalne mreze koji definisu nove atribute nad kojima dublji 
-slojevi u mrezi uce retreniraju kroz nekoliko epoha (koliko prezive). %% da li je prejaka poslednja tvrdnja?
-
-Dodatno, testovi koje smo izveli pokazali su da se nas sistem ponasa izuzetno dobro pri raznim scenarijima evolucije, 
-kada imamo dovoljno i vremena i jedinki, u situacijama kada nam je broj generacija iz nekog razloga ogranicen ali imamo dovoljno 
-veliku populaciju, kao i u situaciji kada imamo dovoljno vremena za evoluciju ali je broj samih jediniki u populaciji ogranicen.
-
-Jos jedan doprinos ovog rada jeste kreiranje novog skupa oflajn rukom pisanih karaktera engleskog alfabeta koji treba da bude 
-naslednik popularnog skupa podataka MNIST, s obzirom na svoje dimenzije i karakteristike. Kreirani skup podataka idealan je 
-za zadatke ucenja masinskog ucenja, kada se arhitekture kreirane na MNISTU prilagodjavaju ozbiljnijim zahtevima koje pred 
-algoritme stavlja nas skup podataka. 
-Rezultati koje smo ostvarili trenirajuci arhitekturu dobijenu izvrsavanjem genetskog algoritma na skupu podataka MNIST predstavljaju 
-prve takve na skupu podataka DoubledMNIST.
 
 \newpage
 
